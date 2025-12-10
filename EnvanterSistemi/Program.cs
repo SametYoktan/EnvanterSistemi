@@ -1,3 +1,6 @@
+using EnvanterSistemi.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace EnvanterSistemi
 {
     public class Program
@@ -8,6 +11,14 @@ namespace EnvanterSistemi
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // DB Context konfigürasyonu ekleniyor
+            builder.Services.AddDbContext<EnvanterContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("EnvanterSistemiContext"))
+            );
+
+            // register IHttpClientFactory
+            builder.Services.AddHttpClient();
 
             var app = builder.Build();
 
