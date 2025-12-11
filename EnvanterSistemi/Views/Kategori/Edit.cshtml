@@ -1,7 +1,23 @@
-﻿
+﻿@model Kategoriler
+
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Kategori Düzenle";
 }
 
-<h1>Edit</h1>
+<h2>Kategori Düzenle</h2>
 
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="KategoriId" />
+    <div class="form-group">
+        <label asp-for="KategoriAdi"></label>
+        <input asp-for="KategoriAdi" class="form-control" />
+        <span asp-validation-for="KategoriAdi" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
