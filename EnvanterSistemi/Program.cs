@@ -39,7 +39,7 @@ namespace EnvanterSistemi
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Kategori}/{action=Index}/{id?}");
+                pattern: "{controller=Urun}/{action=Index}/{id?}");
 
             app.Run();
         }
