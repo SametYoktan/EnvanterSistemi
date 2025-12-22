@@ -1,7 +1,23 @@
-﻿
+﻿@model Tedarikciler
+
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Tedarikci Düzenle";
 }
 
-<h1>Edit</h1>
+<h2>Tedarikci Düzenle</h2>
 
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="TedarikciId" />
+    <div class="form-group">
+        <label asp-for="FirmaAdi"></label>
+        <input asp-for="FirmaAdi" class="form-control" />
+        <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

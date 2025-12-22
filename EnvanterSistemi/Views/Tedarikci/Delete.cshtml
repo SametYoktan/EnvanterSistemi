@@ -1,7 +1,25 @@
-﻿
+﻿@model Tedarikciler
+
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Tedarikci Sil";
 }
 
-<h1>Delete</h1>
+<h2>Tedarikci Sil</h2>
 
+<h4>Bu Tedarikciyi silmek istediğinize emin misiniz?</h4>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.TedarikciId</dd>
+
+        <dt class="col-sm-2">Ürün Adı</dt>
+        <dd class="col-sm-10">@Model.FirmaAdi</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="TedarikciId" />
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>
