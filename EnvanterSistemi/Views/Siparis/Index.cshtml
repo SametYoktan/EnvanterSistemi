@@ -1,7 +1,31 @@
-﻿
+﻿@model IEnumerable<Siparisler>
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Siparişler";
 }
 
-<h1>Index</h1>
+<h2>Siparişler</h2>
 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kategori Adı</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SiparisId</td>
+                <td>@item.MusteriAdi</td>
+                <td>@item.SiparisTarihi</td>
+                <td>
+                    <a asp-controller="SiparisDetay" asp-action="Index" asp-route-id="@item.SiparisId" class="btn btn-sm btn-secondary">Detaylar</a>
+                    <a asp-action="Delete" asp-route-id="@item.SiparisId" class="btn btn-sm btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
