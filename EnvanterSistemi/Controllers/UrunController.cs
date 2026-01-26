@@ -72,7 +72,22 @@ public class UrunController : Controller
         return View(urun);
     }
 
-    // Delete
+    // GET: Delete Onay Sayfası
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null) return NotFound();
+
+        var urunler = await _context.Urunlers
+            .FirstOrDefaultAsync(m => m.UrunId == id);
+
+        if (urunler == null) return NotFound();
+
+        return View(urunler);
+    }
+
+    // POST: Gerçek Silme İşlemi
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
     {
         var urun = await _context.Urunlers.FindAsync(id);
@@ -81,6 +96,7 @@ public class UrunController : Controller
             _context.Urunlers.Remove(urun);
             await _context.SaveChangesAsync();
         }
+
         return RedirectToAction(nameof(Index));
     }
 }

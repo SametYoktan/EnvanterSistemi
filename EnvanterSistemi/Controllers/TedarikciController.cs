@@ -55,7 +55,22 @@ public class TedarikciController : Controller
         return View(tedarikci);
     }
 
-    // Delete
+    // GET: Delete Onay Sayfası
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null) return NotFound();
+
+        var tedarikci = await _context.Tedarikcilers
+            .FirstOrDefaultAsync(m => m.TedarikciId == id);
+
+        if (tedarikci == null) return NotFound();
+
+        return View(tedarikci);
+    }
+
+    // POST: Gerçek Silme İşlemi
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
     {
         var tedarikci = await _context.Tedarikcilers.FindAsync(id);
@@ -64,6 +79,7 @@ public class TedarikciController : Controller
             _context.Tedarikcilers.Remove(tedarikci);
             await _context.SaveChangesAsync();
         }
+
         return RedirectToAction(nameof(Index));
     }
 }
