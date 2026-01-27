@@ -22,7 +22,12 @@
                 <td>@item.MusteriAdi</td>
                 <td>@item.SiparisTarihi</td>
                 <td>
-                    <a asp-controller="SiparisDetay" asp-action="Index" asp-route-id="@item.SiparisId" class="btn btn-sm btn-secondary">Detaylar</a>
+                    <a asp-controller="SiparisDetay"
+                       asp-action="Index"
+                       asp-route-siparisId="@item.SiparisId"
+                       class="btn btn-sm btn-secondary">
+                        Detaylar
+                    </a>
                     <a asp-action="Delete" asp-route-id="@item.SiparisId" class="btn btn-sm btn-danger">Sil</a>
                 </td>
             </tr>
