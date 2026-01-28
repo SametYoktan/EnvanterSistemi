@@ -1,4 +1,4 @@
-﻿@model Siparisler
+﻿@model SiparisDetaylar
 
 @{
     ViewData["Title"] = "Siparişi Sil";
@@ -14,7 +14,7 @@
         <dd class="col-sm-10">@Model.SiparisId</dd>
 
         <dt class="col-sm-2">Ürün Adı</dt>
-        <dd class="col-sm-10">@Model.MusteriAdi</dd>
+        <dd class="col-sm-10">@Model.UrunId</dd>
     </dl>
 
     <form asp-action="Delete" method="post">
