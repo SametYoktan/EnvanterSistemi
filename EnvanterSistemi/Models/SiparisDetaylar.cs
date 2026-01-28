@@ -9,7 +9,7 @@ public partial class SiparisDetaylar
 
     public int SiparisId { get; set; }
 
-    public int UrunId { get; set; }
+    public int? UrunId { get; set; }
 
     public int Adet { get; set; }
 
@@ -17,5 +17,5 @@ public partial class SiparisDetaylar
 
     public virtual Siparisler Siparis { get; set; } = null!;
 
-    public virtual Urunler Urun { get; set; } = null!;
+    public virtual Urunler? Urun { get; set; }
 }

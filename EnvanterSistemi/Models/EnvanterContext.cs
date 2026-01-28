@@ -14,10 +14,7 @@ public partial class EnvanterContext : DbContext
         : base(options)
     {
     }
-    /* Bu Model Yapısı Scaffold İle Oluşturuldu. Önce Sql İle Db Oluşturuldu
-      Scaffold-DbContext "Server=SAMETYOKTAN;Database=EnvanterSistemi;Trusted_Connection=True;
-      TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer 
-      -OutputDir Models -Context EnvanterContext -Force*/
+
     public virtual DbSet<Kategoriler> Kategorilers { get; set; }
 
     public virtual DbSet<SiparisDetaylar> SiparisDetaylars { get; set; }
@@ -30,13 +27,13 @@ public partial class EnvanterContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=SAMETYOKTAN;Database=EnvanterSistemi;Trusted_Connection=True;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("Server=SAMETYOKTAN;Database=EnvanterSistemi;Trusted_Connection=True; TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Kategoriler>(entity =>
         {
-            entity.HasKey(e => e.KategoriId).HasName("PK__Kategori__1782CC9228536617");
+            entity.HasKey(e => e.KategoriId).HasName("PK__Kategori__1782CC92B2CB30FB");
 
             entity.ToTable("Kategoriler");
 
@@ -48,7 +45,7 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<SiparisDetaylar>(entity =>
         {
-            entity.HasKey(e => e.SiparisDetayId).HasName("PK__SiparisD__DA4BD8328991D8FF");
+            entity.HasKey(e => e.SiparisDetayId).HasName("PK__SiparisD__DA4BD8324D73BF5B");
 
             entity.ToTable("SiparisDetaylar");
 
@@ -63,12 +60,13 @@ public partial class EnvanterContext : DbContext
 
             entity.HasOne(d => d.Urun).WithMany(p => p.SiparisDetaylars)
                 .HasForeignKey(d => d.UrunId)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_SiparisDetay_Urun");
         });
 
         modelBuilder.Entity<Siparisler>(entity =>
         {
-            entity.HasKey(e => e.SiparisId).HasName("PK__Siparisl__C3F03BDDD069D7A0");
+            entity.HasKey(e => e.SiparisId).HasName("PK__Siparisl__C3F03BDDF2E81AE4");
 
             entity.ToTable("Siparisler");
 
@@ -83,7 +81,7 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<Tedarikciler>(entity =>
         {
-            entity.HasKey(e => e.TedarikciId).HasName("PK__Tedarikc__E0B82CC141DBEB4B");
+            entity.HasKey(e => e.TedarikciId).HasName("PK__Tedarikc__E0B82CC1A057D831");
 
             entity.ToTable("Tedarikciler");
 
@@ -99,12 +97,13 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<Urunler>(entity =>
         {
-            entity.HasKey(e => e.UrunId).HasName("PK__Urunler__623D364B0E1CCDFC");
+            entity.HasKey(e => e.UrunId).HasName("PK__Urunler__623D364B310F70DA");
 
             entity.ToTable("Urunler");
 
             entity.Property(e => e.UrunId).HasColumnName("UrunID");
             entity.Property(e => e.Aciklama).HasColumnType("text");
+            entity.Property(e => e.AktifMi).HasDefaultValue(true);
             entity.Property(e => e.Fiyat).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.KategoriId).HasColumnName("KategoriID");
             entity.Property(e => e.TedarikciId).HasColumnName("TedarikciID");

@@ -1,0 +1,1 @@
+/* Bu Model Yapısı Scaffold İle Oluşturuldu. Önce Sql İle Db Oluşturuldu Scaffold-DbContext "Server=SAMETYOKTAN;Database=EnvanterSistemi;Trusted_Connection=True; TrustServerCertificate=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context EnvanterContext -Force*/

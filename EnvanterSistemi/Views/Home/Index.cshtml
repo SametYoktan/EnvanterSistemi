@@ -3,19 +3,31 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <div>
+            <a asp-controller="Siparis" asp-action="Index" class="btn btn-primary">
+                📦 Sipariş Görüntüle
+            </a>
+        </div>
 
-    <a asp-controller="Siparis" asp-action="Index" class="btn btn-primary">
-        📦 Sipariş Görüntüle
-    </a>
-    <a asp-controller="Kategori" asp-action="Index" class="btn btn-warning text-dark">
-        🏷️ Kategori Ekle
-    </a>
-    <a asp-controller="Urun" asp-action="Index" class="btn btn-success">
-        🛒 Ürün Ekle
-    </a>
-    <a asp-controller="Tedarikci" asp-action="Index" class="btn btn-info text-dark">
-        🚚 Tedarikçi Ekle
-    </a>
+        <div class="mt-2">
+            <a asp-controller="Kategori" asp-action="Index" class="btn btn-warning text-dark">
+                🏷️ Kategori Ekle
+            </a>
+        </div>
+
+    <div class="mt-2">
+        <a asp-controller="Urun" asp-action="Index" class="btn btn-success">
+            🛒 Ürün Ekle
+        </a>
+    </div>
+
+    <div class="mt-2">
+        <a asp-controller="Tedarikci" asp-action="Index" class="btn btn-info text-dark">
+            🚚 Tedarikçi Ekle
+        </a>
+    </div>
 </div>
+
+
+    
+   

@@ -23,6 +23,7 @@ CREATE TABLE Urunler (
     UrunAdi VARCHAR(255) NOT NULL,
     Aciklama TEXT,
     Fiyat DECIMAL(10, 2) NOT NULL,
+	AktifMi BIT NOT NULL DEFAULT 1,
     StokMiktari INT NOT NULL,
     KategoriID INT NULL,
     TedarikciID INT NULL,
@@ -41,11 +42,11 @@ CREATE TABLE Siparisler (
 CREATE TABLE SiparisDetaylar (
     SiparisDetayID INT IDENTITY(1,1) PRIMARY KEY,
     SiparisID INT NOT NULL,
-    UrunID INT NOT NULL,
+    UrunID INT NULL,
     Adet INT NOT NULL,
     Fiyat DECIMAL(10,2) NOT NULL,
     CONSTRAINT FK_SiparisDetay_Siparis FOREIGN KEY (SiparisID) REFERENCES Siparisler(SiparisID) ON DELETE CASCADE,
-    CONSTRAINT FK_SiparisDetay_Urun FOREIGN KEY (UrunID) REFERENCES Urunler(UrunID) ON DELETE CASCADE
+    CONSTRAINT FK_SiparisDetay_Urun FOREIGN KEY (UrunID) REFERENCES Urunler(UrunID) ON DELETE SET NULL
 );
 
 -- Kategoriler Tablosuna Örnek Veri
@@ -78,9 +79,9 @@ VALUES
 -- Sipariþ Detaylarý Tablosuna Örnek Veri
 INSERT INTO SiparisDetaylar (SiparisID, UrunID, Adet, Fiyat)
 VALUES
-    (1, 1, 2, 2999.99),
-    (2, 2, 3, 149.99),
-    (3, 3, 1, 7.50);
+    (1, 4, 2, 2999.99),
+    (2, 5, 3, 149.99),
+    (3, 6, 1, 7.50);
 
 -- Tablo Verilerini Görüntüleme
 SELECT * FROM Kategoriler;
