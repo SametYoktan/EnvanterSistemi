@@ -7,19 +7,36 @@
 <h2>Ürün Sil</h2>
 
 <h4>Bu Ürünü silmek istediğinize emin misiniz?</h4>
-<hr />
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">ID</dt>
-        <dd class="col-sm-10">@Model.UrunId</dd>
 
-        <dt class="col-sm-2">Ürün Adı</dt>
-        <dd class="col-sm-10">@Model.UrunAdi</dd>
-    </dl>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ürün Adı</th>
+            <th>Açıklama</th>
+            <th>Fiyat</th>
+            <th>Stok Miktarı</th>
+            <th>Kategori ID</th>
+            <th>Tedarikçi ID</th>
+            <th>Aktif</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>@Model.UrunId</td>
+                <td>@Model.UrunAdi</td>
+                <td>@Model.Aciklama</td>
+                <td>@Model.Fiyat</td>
+                <td>@Model.StokMiktari</td>
+                <td>@Model.KategoriId</td>
+                <td>@Model.TedarikciId</td>
+                <td>@Model.AktifMi</td>
+            </tr>
+    </tbody>
+</table>
 
-    <form asp-action="Delete" method="post">
-        <input type="hidden" asp-for="UrunId" />
-        <button type="submit" class="btn btn-danger">Evet, Sil</button>
-        <a asp-action="Index" class="btn btn-secondary">İptal</a>
-    </form>
-</div>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="UrunId" />
+    <button type="submit" class="btn btn-danger">Evet, Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

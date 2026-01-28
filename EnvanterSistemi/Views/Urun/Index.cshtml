@@ -15,6 +15,12 @@
         <tr>
             <th>ID</th>
             <th>Ürün Adı</th>
+            <th>Açıklama</th>
+            <th>Fiyat</th>
+            <th>Stok Miktarı</th>
+            <th>Kategori ID</th>
+            <th>Tedarikçi ID</th>
+            <th>Aktif</th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +30,12 @@
             <tr>
                 <td>@item.UrunId</td>
                 <td>@item.UrunAdi</td>
+                <td>@item.Aciklama</td>
+                <td>@item.Fiyat</td>
+                <td>@item.StokMiktari</td>
+                <td>@item.KategoriId</td>
+                <td>@item.TedarikciId</td>
+                <td>@item.AktifMi</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.UrunId" class="btn btn-sm btn-secondary">Düzenle</a>
                     <a asp-action="Delete" asp-route-id="@item.UrunId" class="btn btn-sm btn-danger">Sil</a>

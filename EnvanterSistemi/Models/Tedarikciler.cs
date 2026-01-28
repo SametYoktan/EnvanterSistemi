@@ -13,5 +13,7 @@ public partial class Tedarikciler
 
     public string? Adres { get; set; }
 
+    public bool AktifMi { get; set; }
+
     public virtual ICollection<Urunler> Urunlers { get; set; } = new List<Urunler>();
 }

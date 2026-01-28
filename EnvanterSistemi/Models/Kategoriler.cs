@@ -9,5 +9,7 @@ public partial class Kategoriler
 
     public string KategoriAdi { get; set; } = null!;
 
+    public bool AktifMi { get; set; }
+
     public virtual ICollection<Urunler> Urunlers { get; set; } = new List<Urunler>();
 }

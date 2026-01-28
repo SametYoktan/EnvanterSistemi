@@ -11,5 +11,7 @@ public partial class Siparisler
 
     public DateTime? SiparisTarihi { get; set; }
 
+    public bool AktifMi { get; set; }
+
     public virtual ICollection<SiparisDetaylar> SiparisDetaylars { get; set; } = new List<SiparisDetaylar>();
 }

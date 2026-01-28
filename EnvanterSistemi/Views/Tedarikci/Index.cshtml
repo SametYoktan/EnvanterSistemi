@@ -15,6 +15,9 @@
         <tr>
             <th>ID</th>
             <th>Tedarikci Adı</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+            <th>Aktif</th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +27,9 @@
             <tr>
                 <td>@item.TedarikciId</td>
                 <td>@item.FirmaAdi</td>
+                <td>@item.Telefon</td>
+                <td>@item.Adres</td>
+                <td>@item.AktifMi</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.TedarikciId" class="btn btn-sm btn-secondary">Düzenle</a>
                     <a asp-action="Delete" asp-route-id="@item.TedarikciId" class="btn btn-sm btn-danger">Sil</a>

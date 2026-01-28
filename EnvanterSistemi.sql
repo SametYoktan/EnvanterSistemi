@@ -6,7 +6,8 @@ USE EnvanterSistemi;
 -- Kategoriler Tablosu
 CREATE TABLE Kategoriler (
     KategoriID INT IDENTITY(1,1) PRIMARY KEY,
-    KategoriAdi VARCHAR(255) NOT NULL
+    KategoriAdi VARCHAR(255) NOT NULL,
+	AktifMi BIT NOT NULL DEFAULT 1
 );
 
 -- Tedarikçiler Tablosu
@@ -14,7 +15,8 @@ CREATE TABLE Tedarikciler (
     TedarikciID INT IDENTITY(1,1) PRIMARY KEY,
     FirmaAdi VARCHAR(255) NOT NULL,
     Telefon VARCHAR(20),
-    Adres TEXT
+    Adres TEXT,
+	AktifMi BIT NOT NULL DEFAULT 1
 );
 
 -- Ürünler Tablosu
@@ -23,10 +25,10 @@ CREATE TABLE Urunler (
     UrunAdi VARCHAR(255) NOT NULL,
     Aciklama TEXT,
     Fiyat DECIMAL(10, 2) NOT NULL,
-	AktifMi BIT NOT NULL DEFAULT 1,
     StokMiktari INT NOT NULL,
     KategoriID INT NULL,
     TedarikciID INT NULL,
+	AktifMi BIT NOT NULL DEFAULT 1,
     CONSTRAINT FK_Urunler_Kategori FOREIGN KEY (KategoriID) REFERENCES Kategoriler(KategoriID) ON DELETE SET NULL,
     CONSTRAINT FK_Urunler_Tedarikci FOREIGN KEY (TedarikciID) REFERENCES Tedarikciler(TedarikciID) ON DELETE SET NULL
 );
@@ -35,7 +37,8 @@ CREATE TABLE Urunler (
 CREATE TABLE Siparisler (
     SiparisID INT IDENTITY(1,1) PRIMARY KEY,
     MusteriAdi VARCHAR(255) NOT NULL,
-    SiparisTarihi DATETIME DEFAULT GETDATE()
+    SiparisTarihi DATETIME DEFAULT GETDATE(),
+	AktifMi BIT NOT NULL DEFAULT 1
 );
 
 -- Sipariþ Detaylarý Tablosu (Bir sipariþ birden fazla ürünü içerebilir)
@@ -79,9 +82,9 @@ VALUES
 -- Sipariþ Detaylarý Tablosuna Örnek Veri
 INSERT INTO SiparisDetaylar (SiparisID, UrunID, Adet, Fiyat)
 VALUES
-    (1, 4, 2, 2999.99),
-    (2, 5, 3, 149.99),
-    (3, 6, 1, 7.50);
+    (1, 2, 2, 2999.99),
+    (2, 3, 3, 149.99),
+    (3, 3, 1, 7.50);
 
 -- Tablo Verilerini Görüntüleme
 SELECT * FROM Kategoriler;

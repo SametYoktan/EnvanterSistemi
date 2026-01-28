@@ -13,13 +13,13 @@ public partial class Urunler
 
     public decimal Fiyat { get; set; }
 
-    public bool AktifMi { get; set; }
-
     public int StokMiktari { get; set; }
 
     public int? KategoriId { get; set; }
 
     public int? TedarikciId { get; set; }
+
+    public bool AktifMi { get; set; }
 
     public virtual Kategoriler? Kategori { get; set; }
 

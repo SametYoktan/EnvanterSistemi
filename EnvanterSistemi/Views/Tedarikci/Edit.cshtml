@@ -8,15 +8,33 @@
 
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="TedarikciId" />
-    <div class="form-group">
+    <div class="form-group mb-2">
+
         <label asp-for="FirmaAdi"></label>
         <input asp-for="FirmaAdi" class="form-control" />
         <span asp-validation-for="FirmaAdi" class="text-danger"></span>
-    </div>
 
+        <label asp-for="Telefon"></label>
+        <input asp-for="Telefon" class="form-control" />
+        <span asp-validation-for="Telefon" class="text-danger"></span>
+
+        <label asp-for="Adres"></label>
+        <input asp-for="Adres" class="form-control" />
+        <span asp-validation-for="Adres" class="text-danger"></span>
+
+        <label asp-for="AktifMi" class="form-label mb-1">Aktif</label>
+        <select asp-for="AktifMi" class="form-select form-select-sm w-auto">
+            <option value="true">Evet</option>
+            <option value="false">Hayır</option>
+        </select>
+        <span asp-validation-for="AktifMi" class="text-danger"></span>
+
+    </div>
     <button type="submit" class="btn btn-primary">Güncelle</button>
     <a asp-action="Index" class="btn btn-secondary">İptal</a>
 </form>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -15,6 +15,7 @@
         <tr>
             <th>ID</th>
             <th>Kategori Adı</th>
+            <th>Aktif</th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +25,7 @@
             <tr>
                 <td>@item.KategoriId</td>
                 <td>@item.KategoriAdi</td>
+                <td>@item.AktifMi</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.KategoriId" class="btn btn-sm btn-secondary">Düzenle</a>
                     <a asp-action="Delete" asp-route-id="@item.KategoriId" class="btn btn-sm btn-danger">Sil</a>

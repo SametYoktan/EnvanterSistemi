@@ -33,11 +33,12 @@ public partial class EnvanterContext : DbContext
     {
         modelBuilder.Entity<Kategoriler>(entity =>
         {
-            entity.HasKey(e => e.KategoriId).HasName("PK__Kategori__1782CC92B2CB30FB");
+            entity.HasKey(e => e.KategoriId).HasName("PK__Kategori__1782CC926CDEDDB1");
 
             entity.ToTable("Kategoriler");
 
             entity.Property(e => e.KategoriId).HasColumnName("KategoriID");
+            entity.Property(e => e.AktifMi).HasDefaultValue(true);
             entity.Property(e => e.KategoriAdi)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -45,7 +46,7 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<SiparisDetaylar>(entity =>
         {
-            entity.HasKey(e => e.SiparisDetayId).HasName("PK__SiparisD__DA4BD8324D73BF5B");
+            entity.HasKey(e => e.SiparisDetayId).HasName("PK__SiparisD__DA4BD832ABA7AFAE");
 
             entity.ToTable("SiparisDetaylar");
 
@@ -66,11 +67,12 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<Siparisler>(entity =>
         {
-            entity.HasKey(e => e.SiparisId).HasName("PK__Siparisl__C3F03BDDF2E81AE4");
+            entity.HasKey(e => e.SiparisId).HasName("PK__Siparisl__C3F03BDD2B361FDA");
 
             entity.ToTable("Siparisler");
 
             entity.Property(e => e.SiparisId).HasColumnName("SiparisID");
+            entity.Property(e => e.AktifMi).HasDefaultValue(true);
             entity.Property(e => e.MusteriAdi)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -81,12 +83,13 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<Tedarikciler>(entity =>
         {
-            entity.HasKey(e => e.TedarikciId).HasName("PK__Tedarikc__E0B82CC1A057D831");
+            entity.HasKey(e => e.TedarikciId).HasName("PK__Tedarikc__E0B82CC172DBF98A");
 
             entity.ToTable("Tedarikciler");
 
             entity.Property(e => e.TedarikciId).HasColumnName("TedarikciID");
             entity.Property(e => e.Adres).HasColumnType("text");
+            entity.Property(e => e.AktifMi).HasDefaultValue(true);
             entity.Property(e => e.FirmaAdi)
                 .HasMaxLength(255)
                 .IsUnicode(false);
@@ -97,7 +100,7 @@ public partial class EnvanterContext : DbContext
 
         modelBuilder.Entity<Urunler>(entity =>
         {
-            entity.HasKey(e => e.UrunId).HasName("PK__Urunler__623D364B310F70DA");
+            entity.HasKey(e => e.UrunId).HasName("PK__Urunler__623D364BEF15114C");
 
             entity.ToTable("Urunler");
 

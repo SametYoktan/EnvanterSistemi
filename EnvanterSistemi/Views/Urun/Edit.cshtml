@@ -8,10 +8,39 @@
 
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="UrunId" />
-    <div class="form-group">
+    <div class="form-group mb-2">
+
         <label asp-for="UrunAdi"></label>
         <input asp-for="UrunAdi" class="form-control" />
         <span asp-validation-for="UrunAdi" class="text-danger"></span>
+
+        <label asp-for="Aciklama"></label>
+        <input asp-for="Aciklama" class="form-control" />
+        <span asp-validation-for="Aciklama" class="text-danger"></span>
+
+       <label asp-for="Fiyat"></label>
+        <input asp-for="Fiyat" class="form-control" />
+        <span asp-validation-for="Fiyat" class="text-danger"></span>
+
+        <label asp-for="StokMiktari"></label>
+        <input asp-for="StokMiktari" class="form-control" />
+        <span asp-validation-for="StokMiktari" class="text-danger"></span>
+
+        <label asp-for="KategoriId"></label>
+        <input asp-for="KategoriId" class="form-control" />
+        <span asp-validation-for="KategoriId" class="text-danger"></span>
+
+        <label asp-for="TedarikciId"></label>
+        <input asp-for="TedarikciId" class="form-control" />
+        <span asp-validation-for="TedarikciId" class="text-danger"></span>
+
+        <label asp-for="AktifMi" class="form-label mb-1">Aktif</label>
+        <select asp-for="AktifMi" class="form-select form-select-sm w-auto">
+            <option value="true">Evet</option>
+            <option value="false">Hayır</option>
+        </select>
+        <span asp-validation-for="AktifMi" class="text-danger"></span>
+
     </div>
 
     <button type="submit" class="btn btn-primary">Güncelle</button>
