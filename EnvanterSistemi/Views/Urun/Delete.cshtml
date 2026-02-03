@@ -35,8 +35,6 @@
     </tbody>
 </table>
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="UrunId" />
-    <button type="submit" class="btn btn-danger">Evet, Sil</button>
-    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+<form>
+    <a asp-controller="Siparis" asp-action="Index" class="btn btn-info text-dark">Geri</a>
 </form>

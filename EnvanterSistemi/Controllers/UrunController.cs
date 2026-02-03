@@ -1,5 +1,6 @@
 ﻿using EnvanterSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 public class UrunController : Controller
@@ -25,6 +26,21 @@ public class UrunController : Controller
     {
         ViewBag.Kategoriler = _context.Kategorilers.ToList();
         ViewBag.Tedarikciler = _context.Tedarikcilers.ToList();
+
+        ViewBag.KategorilerDropBox = _context.Kategorilers.Select(k => new SelectListItem
+        {
+            Value = k.KategoriId.ToString(),
+            Text = k.KategoriAdi
+        })
+        .ToList();
+
+        ViewBag.TedarikcilersDropBox = _context.Tedarikcilers.Select(k => new SelectListItem
+        {
+            Value = k.TedarikciId.ToString(),
+            Text = k.FirmaAdi
+        })
+        .ToList();
+
         return View();
     }
 
