@@ -26,12 +26,21 @@
         <input asp-for="StokMiktari" class="form-control" />
         <span asp-validation-for="StokMiktari" class="text-danger"></span>
 
-        <label asp-for="KategoriId"></label>
-        <input asp-for="KategoriId" class="form-control" />
+        <label class="form-label">Kategori Adı</label>
+        <select asp-for="KategoriId"
+                asp-items="ViewBag.KategorilerDropBox"
+                class="form-control">
+            <option value="">Kategori Seçiniz</option>
+        </select>
         <span asp-validation-for="KategoriId" class="text-danger"></span>
 
-        <label asp-for="TedarikciId"></label>
-        <input asp-for="TedarikciId" class="form-control" />
+
+        <label class="form-label">Tedarikçi Adı</label>
+        <select asp-for="TedarikciId"
+                asp-items="ViewBag.TedarikcilersDropBox"
+                class="form-control">
+            <option value="">Tedarikçi Seçiniz</option>
+        </select>
         <span asp-validation-for="TedarikciId" class="text-danger"></span>
 
         <label asp-for="AktifMi" class="form-label mb-1">Aktif</label>

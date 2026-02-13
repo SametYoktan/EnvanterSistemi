@@ -16,8 +16,8 @@
             <th>Açıklama</th>
             <th>Fiyat</th>
             <th>Stok Miktarı</th>
-            <th>Kategori ID</th>
-            <th>Tedarikçi ID</th>
+            <th>Kategori Adı</th>
+            <th>Tedarikçi Adı</th>
             <th>Aktif</th>
         </tr>
     </thead>
@@ -28,13 +28,13 @@
                 <td>@Model.Aciklama</td>
                 <td>@Model.Fiyat</td>
                 <td>@Model.StokMiktari</td>
-                <td>@Model.KategoriId</td>
-                <td>@Model.TedarikciId</td>
+                <td>@Model.Kategori.KategoriAdi</td>
+                <td>@Model.Tedarikci.FirmaAdi</td>
                 <td>@Model.AktifMi</td>
             </tr>
     </tbody>
 </table>
 
 <form>
-    <a asp-controller="Siparis" asp-action="Index" class="btn btn-info text-dark">Geri</a>
+    <a asp-controller="Urun" asp-action="Index" class="btn btn-info text-dark">Geri</a>
 </form>

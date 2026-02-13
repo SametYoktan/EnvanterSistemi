@@ -24,9 +24,6 @@ public class UrunController : Controller
     // Create - GET
     public IActionResult Create()
     {
-        ViewBag.Kategoriler = _context.Kategorilers.ToList();
-        ViewBag.Tedarikciler = _context.Tedarikcilers.ToList();
-
         ViewBag.KategorilerDropBox = _context.Kategorilers.Select(k => new SelectListItem
         {
             Value = k.KategoriId.ToString(),
@@ -55,8 +52,7 @@ public class UrunController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ViewBag.Kategoriler = _context.Kategorilers.ToList();
-        ViewBag.Tedarikciler = _context.Tedarikcilers.ToList();
+
         return View(urun);
     }
 
@@ -66,8 +62,20 @@ public class UrunController : Controller
         var urun = await _context.Urunlers.FindAsync(id);
         if (urun == null) return NotFound();
 
-        ViewBag.Kategoriler = _context.Kategorilers.ToList();
-        ViewBag.Tedarikciler = _context.Tedarikcilers.ToList();
+        ViewBag.KategorilerDropBox = _context.Kategorilers.Select(k => new SelectListItem
+        {
+            Value = k.KategoriId.ToString(),
+            Text = k.KategoriAdi
+        })
+        .ToList();
+
+        ViewBag.TedarikcilersDropBox = _context.Tedarikcilers.Select(k => new SelectListItem
+        {
+            Value = k.TedarikciId.ToString(),
+            Text = k.FirmaAdi
+        })
+        .ToList();
+
         return View(urun);
     }
 
@@ -83,8 +91,6 @@ public class UrunController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        ViewBag.Kategoriler = _context.Kategorilers.ToList();
-        ViewBag.Tedarikciler = _context.Tedarikcilers.ToList();
         return View(urun);
     }
 
@@ -94,6 +100,8 @@ public class UrunController : Controller
         if (id == null) return NotFound();
 
         var urunler = await _context.Urunlers
+             .Include(u => u.Kategori)
+            .Include(u => u.Tedarikci)
             .FirstOrDefaultAsync(m => m.UrunId == id);
 
         if (urunler == null) return NotFound();
