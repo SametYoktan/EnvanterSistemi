@@ -30,7 +30,8 @@ namespace EnvanterSistemi.Controllers
             if (id == null) return NotFound();
 
             var siparisDetaylars = await _context.SiparisDetaylars
-                .FirstOrDefaultAsync(m => m.SiparisDetayId == id);
+       .Include(s => s.Urun)
+       .FirstOrDefaultAsync(m => m.SiparisDetayId == id);
 
             if (siparisDetaylars == null) return NotFound();
 

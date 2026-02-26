@@ -2,15 +2,20 @@
 
 @{
     ViewData["Title"] = "Sipariş Detaylar";
+    var siparisNo = Model.FirstOrDefault()?.SiparisId;
 }
+<h2>Sipariş Detaylar</h2> 
 
-<h2>Sipariş Detaylar</h2>
+@if (siparisNo != null)
+{
+    <h4>Sipariş No: @siparisNo</h4>
+}
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>SiparisDetayId</th>
-            <th>SiparisId</th>
+            @* <th>Sipariş Detay No</th> *@
+            @* <th>Sipariş No</th> *@
             <th>Ürun Adı</th>
             <th>Adet</th>
             <th>Fiyat</th>
@@ -20,8 +25,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.SiparisDetayId</td>
-                <td>@item.SiparisId</td>
+                @* <td>@item.SiparisDetayId</td> *@
+                @* <td>@item.SiparisId</td> *@
                 <td>@item.Urun.UrunAdi</td>
                 <td>@item.Adet</td>
                 <td>@item.Fiyat</td>

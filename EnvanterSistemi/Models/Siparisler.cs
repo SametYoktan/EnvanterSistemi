@@ -9,6 +9,8 @@ public partial class Siparisler
 
     public string MusteriAdi { get; set; } = null!;
 
+    public string MusteriSoyadi { get; set; } = null!;
+
     public DateTime? SiparisTarihi { get; set; }
 
     public bool AktifMi { get; set; }

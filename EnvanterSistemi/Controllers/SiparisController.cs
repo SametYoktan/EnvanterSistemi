@@ -27,7 +27,7 @@ public class SiparisController : Controller
         if (id == null) return NotFound();
 
         var siparis = await _context.Siparislers
-            .FirstOrDefaultAsync(m => m.SiparisId == id);
+    .FirstOrDefaultAsync(m => m.SiparisId == id);
 
         if (siparis == null) return NotFound();
 
