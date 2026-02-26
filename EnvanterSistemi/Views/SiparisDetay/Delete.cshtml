@@ -2,41 +2,102 @@
 
 @{
     ViewData["Title"] = "Sipariş Detayını Sil";
-    var siparisNo = Model?.SiparisId;
 }
 
-<h2>Siparişi Sil</h2>
+<style>
+    body {
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
+        min-height: 100vh;
+    }
 
-@if (siparisNo != null)
-{
-    <h4>Sipariş No: @siparisNo</h4>
-}
+    .table-modern tbody tr:nth-child(odd) {
+        background-color: #ffffff;
+    }
 
-<h4>Bu Siparişi silmek istediğinize emin misiniz?</h4>
+    .table-modern tbody tr:nth-child(even) {
+        background-color: #f8f9fc;
+    }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            @* <th>ID</th> *@
-            @* <th>Siparis No</th> *@
-            <th>Urun Adı</th>
-            <th>Adet</th>
-            <th>Fiyat</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            @* <td>@Model.SiparisDetayId</td> *@
-            @* <td>@Model.SiparisId</td> *@
-            <td>@Model.Urun.UrunAdi</td>
-            <td>@Model.Adet</td>
-            <td>@Model.Fiyat</td>
-        </tr>
-    </tbody>
-</table>
+    .table-modern tbody tr:hover {
+        background-color: rgba(78,115,223,0.12);
+    }
 
-<form asp-action="Delete" method="post">
-    <input type="hidden" asp-for="SiparisId" />
-    <button type="submit" class="btn btn-danger">Evet, Sil</button>
-    <a asp-action="Index" asp-route-siparisId="@Model.SiparisId" class="btn btn-secondary">İptal</a>
-</form>
+    .badge-active {
+        background-color: #1cc88a;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .badge-passive {
+        background-color: #e74a3b;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .btn-modern {
+        border-radius: 50px;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container-custom {
+        padding: 3rem 4rem;
+    }
+
+    .text-center-custom h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .text-center-custom p {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+    .form-container {
+        margin-top: 3rem;
+    }
+
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+</style>
+
+<div class="container container-custom">
+    <div class="text-center text-center-custom">
+        <h2 class="fw-bold display-6">🗑️ Sipariş Detayını Sil</h2>
+        <p class="text-muted">Bu sipariş detayını silmek istediğinize emin misiniz?</p>
+    </div>
+
+    <div class="form-container">
+        <table class="table table-modern">
+            <thead>
+                <tr>
+                    <th>Sipariş No</th>
+                    <th>Ürün Adı</th>
+                    <th>Adet</th>
+                    <th>Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fw-bold">#@Model.SiparisId</td>
+                    <td>@Model.Urun.UrunAdi</td>
+                    <td>@Model.Adet</td>
+                    <td>@Model.Fiyat</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="SiparisId" />
+            <button type="submit" class="btn btn-danger btn-modern">Evet, Sil</button>
+            <a asp-action="Index" asp-route-siparisId="@Model.SiparisId" class="btn btn-secondary btn-modern">İptal</a>
+        </form>
+    </div>
+</div>

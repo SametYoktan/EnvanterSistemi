@@ -4,37 +4,111 @@
     ViewData["Title"] = "Siparişler";
 }
 
-<h2>Siparişler</h2>
+<style>
+    body {
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
+        min-height: 100vh;
+    }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Sipariş No</th>
-            <th>Musteri Adı</th>
-            <th>Musteri Soyadı</th>
-            <th>Tarih</th>
-            <th>Aktif</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.SiparisId</td>
-                <td>@item.MusteriAdi</td>
-                <td>@item.MusteriSoyadi</td>
-                <td>@item.SiparisTarihi</td>
-                <td>@item.AktifMi</td>
-                <td>
-                    <a asp-controller="SiparisDetay"
-                       asp-action="Index"
-                       asp-route-siparisId="@item.SiparisId"
-                       class="btn btn-sm btn-secondary">
-                        Detaylar
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@item.SiparisId" class="btn btn-sm btn-danger">Sil</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    .table-modern tbody tr:nth-child(odd) {
+        background-color: #ffffff;
+    }
+
+    .table-modern tbody tr:nth-child(even) {
+        background-color: #f8f9fc;
+    }
+
+    /* Hover biraz daha belirgin ama yumuşak */
+    .table-modern tbody tr:hover {
+        background-color: rgba(78,115,223,0.12);
+    }
+
+    .badge-active {
+        background-color: #1cc88a;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .badge-passive {
+        background-color: #e74a3b;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .btn-modern {
+        border-radius: 50px;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+</style>
+
+<div class="container py-5">
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold display-6">📦 Sipariş Yönetimi</h2>
+        <p class="text-muted">Tüm siparişleri buradan görüntüleyebilirsiniz</p>
+    </div>
+
+    <div class="p-4">
+
+        <div class="table-responsive">
+            <table class="table table-modern align-middle">
+                <thead>
+                    <tr>
+                        <th>Sipariş No</th>
+                        <th>Müşteri</th>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th class="text-end">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">#@item.SiparisId</td>
+
+                            <td>
+                                @item.MusteriAdi @item.MusteriSoyadi
+                            </td>
+
+                            <td>
+                                @(item.SiparisTarihi?.ToString("dd.MM.yyyy"))
+                            </td>
+
+                            <td>
+                                @if (item.AktifMi)
+                                {
+                                    <span class="badge-active">Aktif</span>
+                                }
+                                else
+                                {
+                                    <span class="badge-passive">Pasif</span>
+                                }
+                            </td>
+
+                            <td class="text-end">
+                                <a asp-controller="SiparisDetay"
+                                   asp-action="Index"
+                                   asp-route-siparisId="@item.SiparisId"
+                                   class="btn btn-sm btn-secondary btn-modern">
+                                    Detay
+                                </a>
+
+                                <a asp-action="Delete"
+                                   asp-route-id="@item.SiparisId"
+                                   class="btn btn-sm btn-danger btn-modern">
+                                    Sil
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
