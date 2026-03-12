@@ -20,7 +20,11 @@ public class KategoriController : Controller
     // GET: Kategori/Create
     public IActionResult Create()
     {
-        return View(new Kategoriler());
+        var model = new Kategoriler
+        {
+            AktifMi = true
+        };
+        return View(model);
     }
 
     // POST: Kategori/Create
@@ -32,6 +36,7 @@ public class KategoriController : Controller
 
         _context.Kategorilers.Add(kategori);
         await _context.SaveChangesAsync();
+
         return RedirectToAction(nameof(Index));
     }
 
