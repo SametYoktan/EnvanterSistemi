@@ -1,4 +1,5 @@
-﻿using EnvanterSistemi.Models;
+﻿using Azure;
+using EnvanterSistemi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,10 +45,33 @@ namespace EnvanterSistemi.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var siparisDetaylars = await _context.SiparisDetaylars.FindAsync(id);
+            
             if (siparisDetaylars != null)
             {
+                int siparisId = siparisDetaylars.SiparisId;
+
                 _context.SiparisDetaylars.Remove(siparisDetaylars);
                 await _context.SaveChangesAsync();
+
+                // Aynı siparişe ait başka detay var mı?
+                bool varMi = await _context.SiparisDetaylars
+                                           .AnyAsync(x => x.SiparisId == siparisId);
+
+                // Yoksa siparişi de sil
+                if (!varMi)
+                {
+                    var siparis = await _context.Siparislers.FindAsync(siparisId);
+                    if (siparis != null)
+                    {
+                        _context.Siparislers.Remove(siparis);
+                        await _context.SaveChangesAsync();
+                    }
+                    return RedirectToAction("Index", "Siparis");
+                }
+                else 
+                {
+                
+                }
             }
 
             return RedirectToAction(nameof(Index));
