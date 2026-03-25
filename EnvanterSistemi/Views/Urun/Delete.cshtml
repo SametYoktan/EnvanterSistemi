@@ -4,37 +4,111 @@
     ViewData["Title"] = "Ürün Sil";
 }
 
-<h2>Ürün Sil</h2>
+<style>
+    body {
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    }
 
-<h4>Bu Ürünü silmek istediğinize emin misiniz?</h4>
+    .table-modern tbody tr:nth-child(odd) {
+        background-color: #ffffff;
+    }
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Ürün Adı</th>
-            <th>Açıklama</th>
-            <th>Fiyat</th>
-            <th>Stok Miktarı</th>
-            <th>Kategori Adı</th>
-            <th>Tedarikçi Adı</th>
-            <th>Aktif</th>
-        </tr>
-    </thead>
-    <tbody>
-            <tr>
-                <td>@Model.UrunId</td>
-                <td>@Model.UrunAdi</td>
-                <td>@Model.Aciklama</td>
-                <td>@Model.Fiyat</td>
-                <td>@Model.StokMiktari</td>
-                <td>@Model.Kategori.KategoriAdi</td>
-                <td>@Model.Tedarikci.FirmaAdi</td>
-                <td>@Model.AktifMi</td>
-            </tr>
-    </tbody>
-</table>
+    .table-modern tbody tr:nth-child(even) {
+        background-color: #f8f9fc;
+    }
 
-<form>
-    <a asp-controller="Urun" asp-action="Index" class="btn btn-info text-dark">Geri</a>
-</form>
+    .table-modern tbody tr:hover {
+        background-color: rgba(78,115,223,0.12);
+    }
+
+    .badge-active {
+        background-color: #1cc88a;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .badge-passive {
+        background-color: #e74a3b;
+        padding: 6px 14px;
+        border-radius: 50px;
+        color: white;
+        font-size: 12px;
+    }
+
+    .btn-modern {
+        border-radius: 50px;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container-custom {
+        padding: 3rem 4rem;
+    }
+
+    .text-center-custom h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .text-center-custom p {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+    .form-container {
+        margin-top: 3rem;
+    }
+</style>
+
+<div class="container container-custom">
+    <div class="text-center text-center-custom">
+        <h2 class="fw-bold display-6">🗑️ Ürünü Sil</h2>
+        <p class="text-muted">Bu ürünü silmek istediğinize emin misiniz?</p>
+    </div>
+
+    <div class="form-container">
+        <table class="table table-modern">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ürün Adı</th>
+                    <th>Açıklama</th>
+                    <th>Fiyat</th>
+                    <th>Stok Miktarı</th>
+                    <th>Kategori Adı</th>
+                    <th>Tedarikçi Adı</th>
+                    <th>Aktif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fw-bold">#@Model.UrunId</td>
+                    <td>@Model.UrunAdi</td>
+                    <td>@Model.Aciklama</td>
+                    <td>@Model.Fiyat</td>
+                    <td>@Model.StokMiktari</td>
+                    <td>@Model.Kategori.KategoriAdi</td>
+                    <td>@Model.Tedarikci.FirmaAdi</td>
+                    <td>
+                        @if (Model.AktifMi)
+                        {
+                            <span class="badge-active">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="badge-passive">Pasif</span>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="KategoriId" />
+            <button type="submit" class="btn btn-danger btn-modern">Evet, Sil</button>
+            <a asp-controller="Urun" asp-action="Index" class="btn btn-secondary btn-modern">İptal</a>
+        </form>
+    </div>
+</div>

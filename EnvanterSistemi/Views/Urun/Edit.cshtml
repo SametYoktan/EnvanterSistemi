@@ -4,56 +4,119 @@
     ViewData["Title"] = "Ürün Düzenle";
 }
 
-<h2>Ürün Düzenle</h2>
+<style>
+    body {
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    }
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="UrunId" />
-    <div class="form-group mb-2">
+    .card-modern {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
 
-        <label asp-for="UrunAdi"></label>
-        <input asp-for="UrunAdi" class="form-control" />
-        <span asp-validation-for="UrunAdi" class="text-danger"></span>
+    .btn-modern {
+        border-radius: 50px;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+    }
 
-        <label asp-for="Aciklama"></label>
-        <input asp-for="Aciklama" class="form-control" />
-        <span asp-validation-for="Aciklama" class="text-danger"></span>
+        .btn-modern:hover {
+            transform: translateY(-1px);
+        }
 
-       <label asp-for="Fiyat"></label>
-        <input asp-for="Fiyat" class="form-control" />
-        <span asp-validation-for="Fiyat" class="text-danger"></span>
+    .form-control, .form-select {
+        border-radius: 10px;
+    }
+</style>
 
-        <label asp-for="StokMiktari"></label>
-        <input asp-for="StokMiktari" class="form-control" />
-        <span asp-validation-for="StokMiktari" class="text-danger"></span>
+<div class="container py-5">
 
-        <label class="form-label">Kategori Adı</label>
-        <select asp-for="KategoriId"
-                asp-items="ViewBag.KategorilerDropBox"
-                class="form-control">
-            <option value="">Kategori Seçiniz</option>
-        </select>
-        <span asp-validation-for="KategoriId" class="text-danger"></span>
-
-
-        <label class="form-label">Tedarikçi Adı</label>
-        <select asp-for="TedarikciId"
-                asp-items="ViewBag.TedarikcilersDropBox"
-                class="form-control">
-            <option value="">Tedarikçi Seçiniz</option>
-        </select>
-        <span asp-validation-for="TedarikciId" class="text-danger"></span>
-
-        <label asp-for="AktifMi" class="form-label mb-1">Aktif</label>
-        <select asp-for="AktifMi" class="form-select form-select-sm w-auto">
-            <option value="true">Evet</option>
-            <option value="false">Hayır</option>
-        </select>
-        <span asp-validation-for="AktifMi" class="text-danger"></span>
+    ```
+    <div class="text-center mb-4">
+        <h2 class="fw-bold display-6">✏️ Ürün Düzenle</h2>
+        <p class="text-muted">Ürün bilgilerini güncelleyebilirsiniz</p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Güncelle</button>
-    <a asp-action="Index" class="btn btn-secondary">İptal</a>
-</form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card card-modern p-4">
+
+                <form asp-action="Edit" method="post">
+
+                    <input type="hidden" asp-for="KategoriId" />
+
+                    <div class="mb-3">
+                        <label asp-for="UrunAdi" class="form-label fw-semibold"></label>
+                        <input asp-for="UrunAdi" class="form-control" />
+                        <span asp-validation-for="UrunAdi" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Aciklama" class="form-label fw-semibold"></label>
+                        <input asp-for="Aciklama" class="form-control" />
+                        <span asp-validation-for="Aciklama" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Fiyat" class="form-label fw-semibold"></label>
+                        <input asp-for="Fiyat" class="form-control" />
+                        <span asp-validation-for="Fiyat" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="StokMiktari" class="form-label fw-semibold"></label>
+                        <input asp-for="StokMiktari" class="form-control" />
+                        <span asp-validation-for="StokMiktari" class="text-danger"></span>
+                    </div>
+
+                    <label class="form-label">Kategori Adı</label>
+                    <select asp-for="KategoriId"
+                            asp-items="ViewBag.KategorilerDropBox"
+                            class="form-control">
+                        <option value="">Kategori Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="KategoriId" class="text-danger"></span>
+
+                    <label class="form-label">Tedarikçi Adı</label>
+                    <select asp-for="TedarikciId"
+                            asp-items="ViewBag.TedarikcilersDropBox"
+                            class="form-control">
+                        <option value="">Tedarikçi Seçiniz</option>
+                    </select>
+                    <span asp-validation-for="TedarikciId" class="text-danger"></span>
+
+                    <div class="mb-4">
+                        <label asp-for="AktifMi" class="form-label fw-semibold">Durum</label>
+                        <select asp-for="AktifMi" class="form-select">
+                            <option value="true">Aktif</option>
+                            <option value="false">Pasif</option>
+                        </select>
+                        <span asp-validation-for="AktifMi" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+
+                        <a asp-action="Index" class="btn btn-secondary btn-modern">
+                            İptal
+                        </a>
+
+                        <button type="submit" class="btn btn-primary btn-modern">
+                            Güncelle
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    ```
+
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
