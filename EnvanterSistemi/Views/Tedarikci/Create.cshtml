@@ -4,35 +4,89 @@
     ViewData["Title"] = "Yeni Tedarikci";
 }
 
-<h2>Yeni Tedarikci</h2>
+<style>
+    body {
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    }
 
-<form asp-action="Create" method="post">
-    <div class="form-group mb-2">
+    .card-modern {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
 
-        <label asp-for="FirmaAdi"></label>
-        <input asp-for="FirmaAdi" class="form-control" />
-        <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+    .btn-modern {
+        border-radius: 50px;
+        padding: 6px 18px;
+        transition: all 0.3s ease;
+    }
 
-        <label asp-for="Telefon"></label>
-        <input asp-for="Telefon" class="form-control" />
-        <span asp-validation-for="Telefon" class="text-danger"></span>
+    .form-control:focus,
+    .form-select:focus {
+        box-shadow: 0 0 0 0.15rem rgba(78,115,223,.25);
+        border-color: #4e73df;
+    }
+</style>
 
-        <label asp-for="Adres"></label>
-        <input asp-for="Adres" class="form-control" />
-        <span asp-validation-for="Adres" class="text-danger"></span>
+<div class="container py-5">
 
-        <label asp-for="AktifMi" class="form-label mb-1">Aktif</label>
-        <select asp-for="AktifMi" class="form-select form-select-sm w-auto">
-            <option value="true">Evet</option>
-            <option value="false">Hayır</option>
-        </select>
-        <span asp-validation-for="AktifMi" class="text-danger"></span>
-
+    <div class="text-center mb-4">
+        <h2 class="fw-bold display-6">➕ Yeni Tedarikci</h2>
+        <p class="text-muted">Sisteme yeni Tedarikci ekleyebilirsiniz</p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-    <a asp-action="Index" class="btn btn-secondary">İptal</a>
-</form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card card-modern p-4">
+
+                <form asp-action="Create" method="post">
+
+                    <div class="mb-3">
+                        <label asp-for="FirmaAdi" class="form-label fw-semibold"></label>
+                        <input asp-for="FirmaAdi" class="form-control" placeholder="Firma adı giriniz" />
+                        <span asp-validation-for="FirmaAdi" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Telefon" class="form-label fw-semibold"></label>
+                        <input asp-for="Telefon" class="form-control" placeholder="Telefon giriniz" />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Adres" class="form-label fw-semibold"></label>
+                        <input asp-for="Adres" class="form-control" placeholder="Adres giriniz" />
+                        <span asp-validation-for="Adres" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="AktifMi" class="form-label fw-semibold">Durum</label>
+                        <select asp-for="AktifMi" class="form-select">
+                            <option value="true">Aktif</option>
+                            <option value="false">Pasif</option>
+                        </select>
+                        <span asp-validation-for="AktifMi" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-action="Index" class="btn btn-secondary btn-modern">
+                            İptal
+                        </a>
+
+                        <button type="submit" class="btn btn-primary btn-modern">
+                            Kaydet
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

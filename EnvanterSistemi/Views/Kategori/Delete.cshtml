@@ -9,21 +9,17 @@
         background: linear-gradient(135deg, #dfe9f3, #ffffff);
     }
 
-    .card-modern {
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    .table-modern tbody tr:nth-child(odd) {
+        background-color: #ffffff;
     }
 
-    .btn-modern {
-        border-radius: 50px;
-        padding: 8px 20px;
-        transition: all 0.3s ease;
+    .table-modern tbody tr:nth-child(even) {
+        background-color: #f8f9fc;
     }
 
-        .btn-modern:hover {
-            transform: translateY(-1px);
-        }
+    .table-modern tbody tr:hover {
+        background-color: rgba(78,115,223,0.12);
+    }
 
     .badge-active {
         background-color: #1cc88a;
@@ -40,69 +36,69 @@
         color: white;
         font-size: 12px;
     }
+
+    .btn-modern {
+        border-radius: 50px;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container-custom {
+        padding: 3rem 4rem;
+    }
+
+    .text-center-custom h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .text-center-custom p {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+
+    .form-container {
+        margin-top: 3rem;
+    }
 </style>
 
-<div class="container py-5">
-
-    ```
-    <div class="text-center mb-4">
-        <h2 class="fw-bold display-6">🗑️ Kategori Sil</h2>
-        <p class="text-muted">Bu kategoriyi silmek istediğinize emin misiniz?</p>
+<div class="container container-custom">
+    <div class="text-center text-center-custom">
+        <h2 class="fw-bold display-6">🗑️ Siparişi Sil</h2>
+        <p class="text-muted">Bu siparişi silmek istediğinize emin misiniz?</p>
     </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+    <div class="form-container">
+        <table class="table table-modern">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Kategori Adı</th>
+                    <th>Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fw-bold">#@Model.KategoriId</td>
+                    <td>@Model.KategoriAdi</td>
+                    <td>
+                        @if (Model.AktifMi)
+                        {
+                            <span class="badge-active">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="badge-passive">Pasif</span>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-            <div class="card card-modern p-4">
-
-                <table class="table align-middle">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Kategori Adı</th>
-                            <th>Durum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="fw-bold">#@Model.KategoriId</td>
-                            <td>@Model.KategoriAdi</td>
-                            <td>
-                                @if (Model.AktifMi)
-                                {
-                                    <span class="badge-active">Aktif</span>
-                                }
-                                else
-                                {
-                                    <span class="badge-passive">Pasif</span>
-                                }
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <form asp-action="Delete" method="post">
-
-                    <input type="hidden" asp-for="KategoriId" />
-
-                    <div class="d-flex justify-content-end gap-2 mt-3">
-
-                        <a asp-action="Index" class="btn btn-secondary btn-modern">
-                            İptal
-                        </a>
-
-                        <button type="submit" class="btn btn-danger btn-modern">
-                            Evet, Sil
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-        </div>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="KategoriId" />
+            <button type="submit" class="btn btn-danger btn-modern">Evet, Sil</button>
+            <a asp-action="Index" class="btn btn-secondary btn-modern">İptal</a>
+        </form>
     </div>
-    ```
-
 </div>
