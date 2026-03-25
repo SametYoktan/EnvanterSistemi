@@ -92,15 +92,25 @@
             </div>
         </div>
 
+        <!-- Ürün Ekle -->
         <div class="col-md-4">
             <div class="card-3d p-4 text-center">
-                <div class="icon-3d mb-3">🛒</div>
-                <h5 class="fw-bold">Ürün İşlemleri</h5>
-                <p class="text-muted small">Ürün yönetimi</p>
+                <div class="icon-3d mb-3">➕</div>
+                <h5 class="fw-bold">Ürün Ekle</h5>
+                <p class="text-muted small">Yeni ürün oluştur</p>
                 <a asp-controller="Urun" asp-action="Index"
-                   class="btn btn-success btn-modern w-100 mb-2">
+                   class="btn btn-success btn-modern w-100">
                     Ürün Ekle
                 </a>
+            </div>
+        </div>
+
+        <!-- Ürünleri Listele -->
+        <div class="col-md-4">
+            <div class="card-3d p-4 text-center">
+                <div class="icon-3d mb-3">📋</div>
+                <h5 class="fw-bold">Ürün Listesi</h5>
+                <p class="text-muted small">Tüm ürünleri görüntüle</p>
                 <a asp-controller="Urunler" asp-action="Index"
                    class="btn btn-outline-success btn-modern w-100">
                     Ürünleri Gör
@@ -108,7 +118,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card-3d p-4 text-center">
                 <div class="icon-3d mb-3">🚚</div>
                 <h5 class="fw-bold">Tedarikçi</h5>
@@ -120,7 +130,7 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card-3d p-4 text-center">
                 <div class="icon-3d mb-3">🛍️</div>
                 <h5 class="fw-bold">Sepet</h5>
